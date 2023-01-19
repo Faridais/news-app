@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/categories">
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="najah.dev.news_app.ui.fragments.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="article"
+            app:argType="najah.dev.news_app.models.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/breakingNewsFragment"
+        android:name="najah.dev.news_app.ui.fragments.BreakingNewsFragment"
+        android:label="fragment_breaking_news"
+        tools:layout="@layout/fragment_breaking_news" >
+        <action
+            android:id="@+id/action_breakingNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sourceName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/categories"
+        android:name="najah.dev.news_app.ui.fragments.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_breakingNewsFragment"
+            app:destination="@id/breakingNewsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookmarks"
+        android:name="najah.dev.news_app.ui.fragments.SavedNewsFragment"
+        android:label="fragment_saved_news"
+        tools:layout="@layout/fragment_saved_news" >
+        <action
+            android:id="@+id/action_savedNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sources"
+        android:name="najah.dev.news_app.ui.fragments.SearchNewsFragment"
+        android:label="fragment_search_news"
+        tools:layout="@layout/fragment_search_news" >
+        <action
+            android:id="@+id/action_searchNewsFragment_to_breakingNewsFragment"
+            app:destination="@id/breakingNewsFragment" />
+        <action
+            android:id="@+id/action_searchNewsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/account"
+        android:name="najah.dev.news_app.ui.fragments.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_account_to_signUpActivity"
+            app:destination="@id/signUpActivity" />
+        <action
+            android:id="@+id/action_account_to_resetActivity"
+            app:destination="@id/resetActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/resetActivity"
+        android:name="najah.dev.news_app.ui.ResetActivity"
+        android:label="activity_reset"
+        tools:layout="@layout/activity_reset" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="najah.dev.news_app.ui.SignUpActivity"
+        android:label="activity_sign_up"
+        tools:layout="@layout/activity_sign_up" />
+</navigation>
